@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="BillingEAR">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="Billing.war" deploy-path="/" handle="module:/resource/Billing/Billing">
+            <dependent-object>Module_1405627157075</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Billing-Services.war" deploy-path="/" handle="module:/resource/Billing-Services/Billing-Services">
+            <dependent-object>Module_1405694130870</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
