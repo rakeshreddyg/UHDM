@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<title>Billing - Application</title>
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<!-- <link href="css/googleFont.css" rel='stylesheet' type='text/css'> -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/elements.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom.css" />
+	<link href="fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	
+	<script src="js/jquery-2.1.1.min.js"></script>	
+	<script src="js/jquery-ui.js"></script>
+</head>
+<body>
+	<!-- Top Menu-->
+	<div id="topMenuBar"></div>
+
+	<!-- Main Body -->
+	<div class="wrapper">
+		 <div class="section-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Remove the .animated class if you don't want things to move -->
+						<h1 class="animated slideInLeft">
+							<span>Add Subscription</span>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h4 class="hl bottom-15">Add Subscription</h4>
+			<br/>
+			<div class="row form-row">
+				<form class="form-horizontal" name="subscriptionForm" id="subscriptionForm" method="post" action="services/addSubscription">
+					
+					<input type="hidden" class="form-control" id="subscriberId" name="subscriberId" value="">
+					<input type="hidden" class="form-control" id="subscriptionId" name="subscriptionId" value="">
+					
+					<div class="form-group has-success has-feedback">
+				      <label class="control-label col-md-4" for="recordType">Subscription Record Type</label>
+				      <div class="col-md-4">
+					      <select id="recordType" name="recordType" class="form-control">
+					        <option>Select</option>
+					        <option>Birth Subscription</option>
+					        <option>Death Subscription</option>
+					      </select>
+				      </div>
+				    </div>
+				  	
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="subscriptionBeginDate">Subscription Begin Date</label>
+				    	<div class="col-md-4">
+				      		<input type="text" class="form-control" id="subscriptionBeginDate" name="subscriptionBeginDate">
+				    	</div>
+				  	</div>
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="subscriptionEndDate">Subscription End Date</label>
+				    	<div class="col-md-4">
+				      		<input type="text" class="form-control" id="subscriptionEndDate" name="subscriptionEndDate">
+				    	</div>
+				  	</div>				  	
+				  				  	
+				  	<div class="form-group has-success has-feedback">
+				      <label class="control-label col-md-4" for="subscriptionPricingType">Subscription Pricing Type</label>
+				      <div class="col-md-4">
+					      <select id="subscriptionPricingType" name="subscriptionPricingType" class="form-control">
+					        <option>Select</option>
+					        <option>Individual Record Rate</option>
+					        <option>Flat Rate per Month</option>
+					      </select>
+				      </div>
+				    </div>
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="subscriptionPricingTypeRate">Subscription Pricing Type Rate</label>
+				    	<div class="col-md-4">
+				      		<input type="text" class="form-control" id="subscriptionPricingTypeRate" name="subscriptionPricingTypeRate">
+				    	</div>
+				  	</div>				  	
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="agenciesFee">Fee Charged By Other Agencies</label>
+				    	<div class="col-md-4">
+				      		<input type="text" class="form-control" id="agenciesFee" name="agenciesFee">
+				    	</div>
+				  	</div>
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="accountCreatedBy">Account Created By</label>
+				    	<div class="col-md-4">
+				    		<input type="text" class="form-control" id="accountCreatedBy" name="accountCreatedBy">
+				    	</div>
+				  	</div>
+				  	<hr>			  				  	
+				  	<div class="form-group has-success has-feedback">			  	
+				  		<label class="control-label col-md-4" for="primaryContact">Primary Contact</label>	
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name">								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name">
+						</div>												
+				      	<div class="col-md-2">
+					    	<select id="suffix" name="suffix" class="form-control">
+						        <option>Mr</option>
+						        <option>Mrs</option>
+						        <option>Miss</option>
+					      	</select>
+				      	</div>
+					</div>
+					<div class="form-group has-success has-feedback">
+						<div class="col-md-3 col-md-offset-4">
+							<input type="text" class="form-control" id="emailId" name="emailId" placeholder="Enter Email Id">
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number">
+						</div>
+					</div>
+					
+					<div class="form-group has-success has-feedback">			  	
+				  		<label class="control-label col-md-4" for="primaryContact">Secondary Contact</label>	
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="sFirstName" name="sFirstName" placeholder="Enter First Name">								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="sLastName" name="sLastName" placeholder="Enter Last Name">
+						</div>						
+						<div class="col-md-2">
+					    	<select id="sSuffix" name="sSuffix" class="form-control">
+						        <option>Mr</option>
+						        <option>Mrs</option>
+						        <option>Miss</option>
+					      	</select>
+				      	</div>
+					</div>
+					<div class="form-group has-success has-feedback">	
+						<div class="col-md-3 col-md-offset-4">
+							<input type="text" class="form-control" id="sEmailId" name="sEmailId" placeholder="Enter Email Id">
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="sPhoneNumber" name="sPhoneNumber" placeholder="Enter Phone Number">
+						</div>								
+					</div>
+					
+					<div class="form-group has-success has-feedback">			  	
+				  		<label class="control-label col-md-4" for="primaryContact">Alternate Contact</label>	
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="aFirstName" name="aFirstName" placeholder="Enter First Name">								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="aLastName" name="aLastName" placeholder="Enter Last Name">
+						</div>
+						<div class="col-md-2">
+					    	<select id="aSuffix" name="aSuffix" class="form-control">
+						        <option>Mr</option>
+						        <option>Mrs</option>
+						        <option>Miss</option>
+					      	</select>
+				      	</div>
+					</div>
+					<div class="form-group has-success has-feedback">	
+						<div class="col-md-3 col-md-offset-4">
+							<input type="text" class="form-control" id="aEmailId" name="aEmailId" placeholder="Enter Email Id">
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="aPhoneNumber" name="aPhoneNumber" placeholder="Enter Phone Number">
+						</div>								
+					</div>
+					<hr>
+					
+					<div class="form-group has-success has-feedback">				  	
+				  		<label class="control-label col-md-4" for="primaryContact">Contact Details for Billing</label>	
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="bFirstName" name="bFirstName" placeholder="Enter First Name">								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="bLastName" name="bLastName" placeholder="Enter Last Name">
+						</div>
+						<div class="col-md-2">
+					    	<select id="bSuffix" name="bSuffix" class="form-control">
+						        <option>Mr</option>
+						        <option>Mrs</option>
+						        <option>Miss</option>
+					      	</select>
+				      	</div>
+					</div>
+					<div class="form-group has-success has-feedback">	
+						<div class="col-md-3 col-md-offset-4">
+							<input type="text" class="form-control" id="bEmailId" name="bEmailId" placeholder="Enter Email Id">
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="bPhoneNumber" name="bPhoneNumber" placeholder="Enter Phone Number">
+						</div>							
+					</div>			  	
+				  	<br/>		  	
+				  	<div class="col-md-10">
+				  		<button id="saveSubscription" type="Submit" class="btn btn-green pull-right">Save Subscription</button>
+				  		<!-- <button id="updateSubscription" type="Submit" class="btn btn-green pull-right">Update Subscription</button> -->
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Foooter -->
+	<div id="footerDiv"></div>
+
+	<script>
+		$(document).ready(function(){
+			init();
+			$("#topMenuBar").load("top-menu.html");
+			$("#footerDiv").load("footer.html");
+			$(this).setPageEventHandlers();
+			
+			var subscriberId = $.getUrlVar('id');
+			$("#subscriberId").val(subscriberId);
+			
+			$( "#subscriptionForm" ).submit(function( event ) {
+				$.ajax({
+			        url     : $(this).attr('action'),
+			        type    : $(this).attr('method'),
+			        contentType : "application/json; charset=utf-8",
+			        dataType: 'json',
+			        data : JSON.stringify(form2js(this, '.', true)),
+			        success : function( data ) {
+			        	if(data.statusCode == 200){
+			        		window.location.href = "/Billing/subscriberSummaryPage.html"
+			        	} else{
+			        		$("#errorDiv").html(data.errorMessage);
+							$("#errorDiv").toggleClass('show hidden');
+			        	}
+			        },
+			        error   : function( xhr, err, thrownError ) {
+			            alert('Error in submission '+err+xhr+thrownError);
+			        	console.error("Error in Submission: "+thrownError);
+			        }
+			    });
+				return false;
+			});
+			
+			$(function() {
+				$( "#subscriptionBeginDate" ).datepicker();
+		    });
+			
+			$(function() {
+				$( "#subscriptionEndDate" ).datepicker();
+		    });
+		})
+		
+		$('#subscriptionEndDate').change(function(){
+	        var beginDate = $('#subscriptionBeginDate').val();
+	        var endDate = $('#subscriptionEndDate').val();
+	        if (beginDate > endDate) {
+	            alert('EndDate must be after BeginDate or same Day');
+	            document.getElementById('subscriptionEndDate').value= "";
+	            setTimeout(function() {
+		    	 	document.getElementById('subscriptionEndDate').focus();
+		    	}, 0);
+	        }else{
+	        	setTimeout(function() {
+		    	 	document.getElementById('subscriptionPricingType').focus();
+		    	}, 0);
+	        }
+	    });
+		$('#emailId').change(function(){
+	        var sEmail = $('#emailId').val();	
+	        if (validateEmail(sEmail)) {	
+	            //alert('Email is valid');
+	        	document.getElementById('phoneNumber').focus();
+	        }
+	        else {	
+	            alert('Please enter the valid Email Format');
+	            document.getElementById('emailId').value = "";
+	            setTimeout(function() {
+		    	 	document.getElementById('emailId').focus();
+		    	}, 0);
+	        }
+	    });
+		
+		$('#sEmailId').change(function(){
+	        var sEmail = $('#sEmailId').val();	
+	        if (validateEmail(sEmail)) {	
+	            //alert('Email is valid');
+	        	document.getElementById('sPhoneNumber').focus();
+	        }
+	        else {	
+	            alert('Please enter the valid Email Format');
+	            document.getElementById('sEmailId').value = "";
+	            setTimeout(function() {
+		    	 	document.getElementById('sEmailId').focus();
+		    	}, 0);
+	        }
+	    });
+		
+		$('#aEmailId').change(function(){
+	        var sEmail = $('#aEmailId').val();	
+	        if (validateEmail(sEmail)) {	
+	            //alert('Email is valid');
+	        	document.getElementById('aPhoneNumber').focus();
+	        }
+	        else {	
+	            alert('Please enter the valid Email Format');
+	            document.getElementById('aEmailId').value = "";
+	            setTimeout(function() {
+		    	 	document.getElementById('aEmailId').focus();
+		    	}, 0);
+	        }
+	    });
+		
+		$('#bEmailId').change(function(){
+	        var sEmail = $('#bEmailId').val();	
+	        if (validateEmail(sEmail)) {	
+	            //alert('Email is valid');
+	        	document.getElementById('bPhoneNumber').focus();
+	        }
+	        else {	
+	            alert('Please enter the valid Email Format');
+	            document.getElementById('bEmailId').value = "";
+	            setTimeout(function() {
+		    	 	document.getElementById('bEmailId').focus();
+		    	}, 0);
+	        }
+	    });	
+		
+		
+		function validateEmail(sEmail) {
+			var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		    if (filter.test(sEmail)) {
+		        return true;
+		    }
+		    else {		
+		        return false;		
+		    }
+		};
+    </script>
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/common.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/scrolltopcontrol.js"></script>
+	<script src="js/form2js.js"></script>
+	<script src="js/js2form.js"></script>
+	<script src="js/json2.js"></script>
+	<script src="js/taffy-min.js"></script>
+</body>
+</html>

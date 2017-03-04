@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<title>Billing - Application</title>
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<!-- <link href="css/googleFont.css" rel='stylesheet' type='text/css'> -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/elements.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom.css" />
+	<link href="fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	
+	<script src="js/jquery-2.1.1.min.js"></script>	
+	<script src="js/jquery-ui.js"></script>
+</head>
+<body>
+	<!-- Top Menu-->
+	<div id="topMenuBar"></div>
+
+	<!-- Main Body -->
+	<div class="wrapper">
+		<div class="section-header">
+			<div class="container">
+				<div class="alert alert-danger hidden" id="errorDiv"></div>
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Remove the .animated class if you don't want things to move -->
+						<h1 class="animated slideInLeft">
+							<span>Add Subscriber</span>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h4 class="hl bottom-15">Add Subscriber</h4>
+			<br/>
+			<div class="row form-row">			
+				<form class="form-horizontal" name="addSubscriber" id="addSubscriber" action="services/addSubscriber" method="post">
+				
+					<input type="hidden" class="form-control" id="subscriberId" name="subscriberId" value="">
+					
+					<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="subscriberName">Subscriber Name</label>
+				    	<div class="col-md-5">
+				    		<input type="text" class="form-control" id="subscriberName" name="subscriberName">
+				    	</div>
+				  	</div>
+				  				  	
+				  	<div class="form-group has-success has-feedback">
+				      <label class="control-label col-md-4" for="subscriberType">Subscriber Type</label>
+				      <div class="col-md-5">
+					      <select id="subscriberType" name="subscriberType" class="form-control">
+					        <option>Select</option>
+					        <option>Public</option>
+					        <option>Private</option>
+					      </select>
+				      </div>
+				    </div>				  	
+				  	
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="accountCreatedBy">Account Created By</label>
+				    	<div class="col-md-5">
+				    		<input type="text" class="form-control" id="accountCreatedBy" name="accountCreatedBy">
+				    	</div>
+				  	</div>
+				  	
+				  	<div class="form-group has-success has-feedback">
+				    	<label class="control-label col-md-4" for="address1">Primary Address</label>
+				    	<div class="col-md-5">
+				    		<input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address 1">
+				    	</div>
+				  	</div>
+				  	<div class="form-group has-success has-feedback">
+				    	<div class="col-md-5 col-md-offset-4">
+				    		<input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address 2">
+				    	</div>
+				  	</div>
+				  	<div class="form-group has-success has-feedback">				  	
+			  			<div class="col-md-2 col-md-offset-4">
+							<input type="text" class="form-control" id="city" name="city" placeholder="Enter City">								
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="state" name="state" placeholder="Enter State">
+						</div>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Enter Zip Code">
+						</div>
+					</div>
+				  	<br/>
+				  	<div class="col-md-9">
+				  		<button id="saveSubscriber" type="Submit" class="btn btn-green pull-right">Save Subscriber</button>
+				  		<!-- <button id="updateSubscriber" type="Submit" class="btn btn-green pull-right">Update Subscriber</button> -->
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Foooter -->
+	<div id="footerDiv"></div>
+
+	<script>
+		$(document).ready(function(){
+			init();
+			$("#topMenuBar").load("top-menu.html");
+			$("#footerDiv").load("footer.html");
+			$(this).setPageEventHandlers();
+			
+			//$('#updateSubscriber').hide();
+			var subscriberId = $.getUrlVar('id');
+			$( "#addSubscriber" ).submit(function( event ) {
+			 	//var nextPage = $('#nextPage').val();
+				$.ajax({
+			        url     : $(this).attr('action'),
+			        type    : $(this).attr('method'),
+			        contentType : "application/json; charset=utf-8",
+			        dataType: 'json',
+			        data : JSON.stringify(form2js(this, '.', true)),
+			        success : function( data ) {
+			        	if(data.statusCode == 200){
+			        		window.location.href = "/Billing/subscriberSummaryPage.html"
+			        	} else{
+			        		$("#errorDiv").html(data.errorMessage);
+							$("#errorDiv").toggleClass('show hidden');
+			        	}
+			        },
+			        error   : function( xhr, err, thrownError ) {
+			            alert('Error in submission '+err+xhr+thrownError);
+			        	console.error("Error in Submission: "+thrownError);
+			        	//loadPage(nextPage);
+			        }
+			    });
+				return false;
+			});				
+		});
+		
+    </script>
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/common.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/scrolltopcontrol.js"></script>
+	<script src="js/form2js.js"></script>
+	<script src="js/js2form.js"></script>
+	<script src="js/json2.js"></script>
+	<script src="js/taffy-min.js"></script>
+</body>
+</html>
